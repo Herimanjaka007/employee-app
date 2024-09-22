@@ -1,0 +1,52 @@
+<%- include("partials/head-base.ejs") %>
+    <%- include("./button-modal-index.ejs", {departments}) %>
+        <div class="container mt-5">
+            <h1 class="mb-4">Liste des employés</h1>
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Prénom</th>
+                        <th>Nom</th>
+                        <th>Email</th>
+                        <th>Date d'embauche</th>
+                        <th>Sexe</th>
+                        <th>Département</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% employees.forEach(employee=> { %>
+                        <tr>
+                            <td>
+                                <%= employee.first_name_employee %>
+                            </td>
+                            <td>
+                                <%= employee.last_name_employee %>
+                            </td>
+                            <td>
+                                <%= employee.email_employee %>
+                            </td>
+                            <td>
+                                <%= new Date(employee.date_embauche_employee).toLocaleDateString() %>
+                            </td>
+                            <td>
+                                <%= employee.sexe_employee==='M' ? 'Masculin' : 'Féminin' %>
+                            </td>
+                            <td>
+                                <%= employee.name_department %>
+                            </td>
+                            <td>
+                                <a href="/employees/<%= employee.eid_employee %>/edit"
+                                    class="btn btn-warning btn-sm">Update</a>
+
+                                <form action="/employees/<%= employee.eid %>?_method=DELETE" method="POST"
+                                    style="display:inline;">
+                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+        </div>
+        <%- include("partials/foot-base.ejs") %>
