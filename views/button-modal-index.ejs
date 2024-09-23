@@ -19,30 +19,40 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="firstName" class="form-label">First name:</label>
-                            <input type="text" class="form-control" id="firstName">
+                            <input minlength="2" type="text" class="form-control" id="firstName" name="firstName" required>
                         </div>
                         <div class="mb-3">
                             <label for="lastName" class="form-label">Last name:</label>
-                            <input type="text" class="form-control" id="lastName">
+                            <input minlength="2" type="text" class="form-control" id="lastName" name="lastName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="sexe">Sexe:</label>
+                            <select id="sexe" class="form-select" name="sexe">
+                                <option value="M">Masculin</option>
+                                <option value="F">Feminin</option>
+                            </select>
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email">
+                            <input type="email" class="form-control" id="email" name="email" required>
                         </div>
                         <div class="mb-3">
                             <label for="date" class="form-label">Date of hire</label>
-                            <input type="date" name="dateHire" id="date">
+                            <input type="date" name="dateHire" id="date" required>
                         </div>
-                        <select class="form-select" aria-label="Default select example">
-                            <% departments.forEach(department=> { %>
-                                <option value=<%=department %>><%= department %>
-                                </option>
-                                <% }) %>
-                        </select>
+                        <div class="mb-3">
+                            <label for="department">Department</label>
+                            <select class="form-select" aria-label="Default select example" id="department" name="department">
+                                <% departments.forEach(department=> { %>
+                                    <option value=<%= department.id_department %>><%= department.name_department %>
+                                    </option>
+                                    <% }) %>
+                            </select> 
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                        <button type="submit" class="btn btn-primary">Signup</button>
+                        <button type="submit" class="btn btn-primary">Add</button>
                 </form>
             </div>
         </div>
@@ -60,7 +70,7 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="departmentName" class="form-label">Department name</label>
-                        <input type="text" class="form-control" id="departmentName">
+                        <input type="text" class="form-control" id="departmentName" name="department">
                     </div>
                 </div>
                 <div class="modal-footer">
