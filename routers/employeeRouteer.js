@@ -1,8 +1,9 @@
 import express from "express";
 import { body, param, validationResult } from "express-validator";
 
-import { postEmployee } from "../controllers/postEmployee.js";
-import editEmployee from "../controllers/editEmployee.js";
+import postEmployee from "../controllers/postEmployee.js";
+import getEditEmployee from "../controllers/getEditEmployee.js";
+import postEditEmployee from "../controllers/postEditEmployee.js";
 
 const employeeRouter = express.Router();
 
@@ -48,16 +49,16 @@ const validateEmployee = [
 
 employeeRouter.post("/create", [validateEmployee, postEmployee]);
 
-employeeRouter.get(
-    "/:idEmployee/edit",
-    (req, res, next) => {
-        const { idEmployee } = req.params;
-        if (Number.isInteger(+idEmployee)) {
-            return next();
-        }
-        return res.redirect("/");
-    },
-    editEmployee
-);
+const handleIdEmployeeParam = (req, res, next) => {
+    const { idEmployee } = req.params;
+    if (Number.isInteger(+idEmployee)) {
+        return next();
+    }
+    return res.redirect("/");
+};
+
+employeeRouter.get("/:idEmployee/edit", handleIdEmployeeParam, getEditEmployee);
+
+employeeRouter.post("/:idEmployee/edit", handleIdEmployeeParam, postEditEmployee);
 
 export default employeeRouter;

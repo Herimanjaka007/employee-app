@@ -1,6 +1,6 @@
 import pool from "../db/pool.js";
 
-export const postEmployee = async (req, res, next) => {
+const postEmployee = async (req, res, next) => {
     const { firstName, lastName, sexe, dateHire, email, department } = req.body;
     const query = `
         INSERT INTO employee 
@@ -10,4 +10,6 @@ export const postEmployee = async (req, res, next) => {
     
     await pool.query(query, [firstName, lastName, sexe, dateHire, email, department]);
     res.redirect('/');
-}
+};
+
+export default postEmployee;

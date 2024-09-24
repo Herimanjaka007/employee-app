@@ -1,6 +1,6 @@
 import { getDepartments, getEmployee } from "../db/query.js";
 
-const editEmployee = async (req, res, next) => {
+const getEditEmployee = async (req, res, next) => {
     const { idEmployee } = req.params;
     const rowsEmployee = await getEmployee(+idEmployee);
     const [employee] = rowsEmployee;
@@ -8,4 +8,4 @@ const editEmployee = async (req, res, next) => {
     res.render("editEmployee", {employee, departments})
 };
 
-export default editEmployee;
+export default getEditEmployee;
