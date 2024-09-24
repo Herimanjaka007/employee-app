@@ -1,0 +1,48 @@
+<%- include("partials/head-base.ejs") %>
+    <div class="container w-75 mx-auto border mt-3 p-3 rounded shadow-sm">
+        <form action="" method="post">
+            <div class="mb-3">
+                <label for="firstName" class="form-label">First name:</label>
+                <input minlength="2" type="text" class="form-control" id="firstName" name="firstName" required
+                    value="<%= employee.first_name_employee %>">
+            </div>
+            <div class="mb-3">
+                <label for="lastName" class="form-label">Last name:</label>
+                <input minlength="2" type="text" class="form-control" id="lastName" name="lastName" required
+                    value="<%= employee.last_name_employee %>">
+            </div>
+            <div class="mb-3">
+                <label for="sexe" class="form-label">Sexe:</label>
+                <select id="sexe" class="form-select" name="sexe">
+                    <option value="M" <%=employee.sexe_employee=="M" && "selected" %>>Masculin</option>
+                    <option value="F" <%=employee.sexe_employee==="F" && "selected" %>>Feminin</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required
+                    value="<%= employee.email_employee %>">
+            </div>
+            <div class="mb-3">
+                <label for="date" class="form-label">Date of hire</label>
+                <input class="form-control" type="date" name="dateHire" id="date" required
+                    value="<%= new Date(employee.date_embauche_employee).toLocaleDateString('en-CA') %>">
+            </div>
+            <div class="mb-3">
+                <label for="department" class="form-label">Department:</label>
+                <select name="department" id="department" class="form-select">
+                    <% departments.forEach(department=> { %>
+                        <option value="<%= department.id_department %>"
+                            <%=employee.id_department===department.id_department && "selected" %>>
+                            <%= department.name_department %>
+                        </option>
+                        <% }); %>
+                </select>
+            </div>
+            <div class="mb-3 d-flex justify-content-end">
+                <a href="/"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button></a>
+                <button type="submit" class="btn btn-primary ms-3">Save</button>
+            </div>
+        </form>
+    </div>
+    <%- include("partials/foot-base.ejs") %>

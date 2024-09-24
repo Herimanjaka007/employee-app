@@ -36,8 +36,8 @@
                                 <%= employee.name_department %>
                             </td>
                             <td>
-                                <a href="/employees/<%= employee.eid_employee %>/edit"
-                                    class="btn btn-warning btn-sm">Update</a>
+                                <a href="/employee/<%= employee.eid_employee %>/edit"
+                                    class="btn btn-warning btn-sm">Edit</a>
 
                                 <form action="/employees/<%= employee.eid %>?_method=DELETE" method="POST"
                                     style="display:inline;">
